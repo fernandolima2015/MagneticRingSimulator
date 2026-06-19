@@ -1,0 +1,1 @@
+import{S as e,n as t}from"./index-ipJfMC9t.js";function n(){return t(e(e=>e.renderMode))}export{n as t};

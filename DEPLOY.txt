@@ -1,0 +1,17 @@
+DEPLOY — magnetic-ring-simulator
+================================
+
+URL: https://flxsistemas.com.br/reator/
+
+IMPORTANTE
+----------
+1. Envie TODO o conteúdo desta pasta para /reator/ no servidor.
+2. APAGUE arquivos antigos no servidor antes do upload.
+3. NÃO use a pasta "dist/" do projeto (caminhos errados → erro 404).
+4. Após upload: Ctrl+F5 no navegador.
+
+Verificação
+-----------
+No código-fonte da página (Ctrl+U), os scripts devem ser:
+  /reator/assets/...
+Se aparecer "/assets/" sem /reator/, o index.html está errado.

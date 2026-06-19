@@ -4,9 +4,6 @@ Simulador 3D interativo de um **reator de propulsão magnética toroidal** — l
 
 **Demo ao vivo:** [https://flxsistemas.com.br/reator/](https://flxsistemas.com.br/reator/)
 
-> **Repositório público / servidor:** envie **somente a pasta `release/`** (build estático).  
-> O código-fonte (`src/`, engines, shaders, IA) **não deve** ir para Git público nem para o hosting.
-
 ---
 
 ## Visão geral
@@ -189,54 +186,6 @@ Abre em [http://localhost:5173](http://localhost:5173).
 
 ---
 
-## Publicação (Git e servidor)
-
-O **código-fonte fica privado**. Para GitHub público ou upload no servidor, use **apenas o build**:
-
-```bash
-npm run release
-```
-
-Isso gera a pasta **`release/`** com:
-- `index.html`, `.htaccess`, `assets/`, favicon
-- `README.md` simplificado (para o repo público)
-- **Sem** `src/`, `node_modules/`, configs ou código do engine
-
-### O que enviar
-
-| Destino | Pasta | Conteúdo |
-|---------|-------|----------|
-| Servidor `/reator/` | `release/` | Tudo dentro da pasta |
-| GitHub público | `release/` | Inicialize o git **dentro** de `release/` |
-
-### GitHub público (repositório só com build)
-
-```bash
-npm run release
-cd release
-git init
-git add .
-git commit -m "deploy: build estático"
-git remote add origin https://github.com/SEU_USUARIO/magnetic-ring-simulator.git
-git push -u origin main
-```
-
-### Repositório privado (desenvolvimento)
-
-Mantenha o projeto completo em um repo **privado** com `src/`, `package.json`, etc.  
-As pastas `deploy/`, `release/` e `node_modules/` estão no `.gitignore`.
-
----
-
-## Build e deploy
-
-```bash
-npm run release
-```
-
-A pasta **`release/`** é a única que deve ser enviada ao servidor ou ao Git público.  
-Internamente, o Vite gera primeiro em `deploy/reator/` (mesmo conteúdo).
-
 ### Publicar em subpasta (ex.: `/reator/`)
 
 1. Execute `npm run release`.
@@ -244,24 +193,6 @@ Internamente, o Vite gera primeiro em `deploy/reator/` (mesmo conteúdo).
 3. **Apague** arquivos antigos antes de substituir (hashes dos bundles mudam a cada build).
 4. Confirme que `mod_rewrite` está ativo no Apache (`.htaccess` incluído).
 5. No navegador: **Ctrl+F5** após o deploy.
-
-> **Nunca envie** `src/`, `node_modules/`, `vite.config.js` ou `package.json` para produção.
-
-### Publicar na raiz do domínio
-
-Altere em `vite.config.js`:
-
-```js
-base: mode === 'production' ? '/' : '/',
-build: {
-  outDir: 'dist',
-  // ...
-}
-```
-
-Depois: `npm run build` e envie o conteúdo de `dist/` para a raiz do site.
-
-> **Importante:** Não use a pasta `dist/` gerada com `base: '/reator/'` — os caminhos dos assets ficarão incorretos. Sempre use a pasta de saída configurada no `vite.config.js`.
 
 ---
 
@@ -311,15 +242,6 @@ Este README descreve o projeto de **desenvolvimento (privado)**.
 
 O repositório **público** contém apenas o build em `release/` e não aceita PRs de código-fonte.  
 Para contribuir com o engine ou shaders, entre em contato com [FLX Sistemas](https://flxsistemas.com.br).
-
-Antes de gerar um novo build:
-
-```bash
-npm run lint
-npm run release
-```
-
----
 
 ## Roadmap (ideas)
 

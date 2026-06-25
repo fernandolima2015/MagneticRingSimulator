@@ -258,7 +258,8 @@ Para contribuir com o engine ou shaders, entre em contato com [FLX Sistemas](htt
 Este projeto está sob a licença **MIT**. Veja o arquivo [LICENSE](LICENSE) para detalhes.
 
 ---
-
+buymeacoffee.com/flxsistemas
+---
 ## Autor
 
 Desenvolvido por **[FLX Sistemas](https://flxsistemas.com.br)**

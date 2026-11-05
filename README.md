@@ -4,6 +4,36 @@ Simulador 3D interativo de um **reator de propulsão magnética toroidal** — l
 
 **Demo ao vivo:** [https://flxsistemas.com.br/reator/](https://flxsistemas.com.br/reator/)
 
+![Interface do simulador no modo Experimental: controles à esquerda, cena 3D ao centro e painel da IA à direita](docs/screenshots/interface.jpg)
+
+<p align="center">
+  <img src="docs/screenshots/reator.gif" alt="Anel toroidal do reator girando no modo Experimental" width="460">
+</p>
+
+## Galeria
+
+Capturas reais do simulador, renderizadas no navegador no modo **Qualidade**.
+
+| | |
+|:---:|:---:|
+| ![Reator no modo Experimental com campo quântico, grade de dobra e lente gravitacional](docs/screenshots/experimental.jpg) | ![Reator no modo Singularidade com todos os efeitos de distorção ativos](docs/screenshots/singularidade.jpg) |
+| **Modo Experimental** — campo quântico, grade de dobra e lente gravitacional distorcendo o fundo | **Modo Singularidade** — disco de acreção, rasgo da realidade e aberração cromática |
+| ![Simulação hiperdimensional com tesseracts projetados de 4D](docs/screenshots/hiperdimensao.jpg) | ![Bolha de desacoplamento envolvendo o reator](docs/screenshots/desacoplamento.jpg) |
+| **Hiperdimensão** — tesseracts projetados de 4D para 3D | **Desacoplamento** — bolha de isolamento em torno do anel |
+
+<img src="docs/screenshots/painel-ia.jpg" alt="Painel da IA com consciência simulada, traços de personalidade, modos de controle e mensagens do sistema" width="240" align="right">
+
+### Painel da IA
+
+- **Consciência simulada** — nível de consciência, emoção, arquétipo de personalidade e nível de ameaça em tempo real
+- **Traços de personalidade** — cautela, agressão, curiosidade e volatilidade, que mudam conforme o reator se comporta
+- **Modos de controle** — monitor, assistido, autônomo e emergência; no autônomo a IA assume os controles do reator
+- **Modos de energia** — economia, balanceado, experimental e singularidade
+- **Cientista autônomo** — formula hipóteses, roda experimentos, registra descobertas e gera relatórios, com LLM opcional
+- **Voz da IA** — mensagens do sistema que se corrompem visualmente quando a realidade se rompe
+
+<br clear="right">
+
 ---
 
 ## Visão geral

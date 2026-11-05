@@ -1,4 +1,4 @@
-import{t as e}from"./vendor-react-BVnWb422.js";import{i as t}from"./vendor-r3f-Cy2v2uTY.js";import{m as n}from"./index-Bx0g5MTh.js";import{L as r}from"./vendor-three-RqB-y9wz.js";import{a as i,i as a,t as o}from"./buildShader-CO1bC7zE.js";import{s}from"./createShaderMaterial-DyBCbO5K.js";import{t as c}from"./useRealityField-CT4L1UHa.js";var l={vertexShader:i(`// Rasgo da realidade — fenda no tecido do espaço
+import{t as e}from"./vendor-react-BVnWb422.js";import{i as t}from"./vendor-r3f-Cy2v2uTY.js";import{m as n}from"./index-B2AIcwJW.js";import{L as r}from"./vendor-three-RqB-y9wz.js";import{a as i,i as a,t as o}from"./buildShader-CO1bC7zE.js";import{s}from"./createShaderMaterial-CSeXaZX3.js";import{t as c}from"./useRealityField-DLshToEu.js";var l={vertexShader:i(`// Rasgo da realidade — fenda no tecido do espaço
 
 uniform float uTime;
 uniform float uTear;
@@ -49,6 +49,7 @@ void main() {\r
   float alpha = (edge * 0.9 + voidMask * 0.35) * (1.0 - smoothstep(20.0, 120.0, vDepth));\r
   if (alpha < 0.02) discard;\r
 \r
-  gl_FragColor = vec4(col, alpha);\r
+  // Cor negativa em mistura aditiva "apaga" a cena (manchas pretas no pós-processamento)\r
+  gl_FragColor = vec4(max(col, vec3(0.0)), clamp(alpha, 0.0, 1.0));\r
 }\r
 `,o)},u=e(),d=7;function f(){let e=[];for(let t=0;t<d;t++){let n=t/d*Math.PI*2+Math.random()*.4,r=12+Math.random()*28;e.push({position:[Math.cos(n)*r,(Math.random()-.5)*8,Math.sin(n)*r],rotation:[Math.random()*.3,n+Math.PI/2,Math.random()*.2],scale:[.15+Math.random()*.2,8+Math.random()*12,1]})}return e}var p=f(),m=new r({transparent:!0,depthWrite:!1,side:2,blending:2,vertexShader:l.vertexShader,fragmentShader:l.fragmentShader,uniforms:s()});function h(){let e=n(e=>{let t=c(e);return t.tearIntensity>=.25&&t.ruptureLevel>=2});return t(e=>{let t=c(),n=m.uniforms;n.uTime.value=e.clock.elapsedTime,n.uTear.value=t.tearIntensity,n.uPhase.value=t.phase,n.uCorruption.value=t.shaderCorruption}),e?(0,u.jsx)(`group`,{renderOrder:50,children:p.map((e,t)=>(0,u.jsx)(`mesh`,{position:e.position,rotation:e.rotation,scale:e.scale,material:m,frustumCulled:!1,children:(0,u.jsx)(`planeGeometry`,{args:[1,1,1,16]})},t))}):null}export{h as default};

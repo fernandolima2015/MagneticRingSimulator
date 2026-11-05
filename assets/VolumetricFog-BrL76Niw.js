@@ -1,4 +1,4 @@
-import{r as e}from"./rolldown-runtime-QTnfLwEv.js";import{i as t,t as n}from"./vendor-react-BVnWb422.js";import{i as r}from"./vendor-r3f-Cy2v2uTY.js";import{m as i}from"./index-Bx0g5MTh.js";import{G as a}from"./vendor-three-RqB-y9wz.js";var o=e(t(),1),s=n(),c=`
+import{r as e}from"./rolldown-runtime-QTnfLwEv.js";import{i as t,t as n}from"./vendor-react-BVnWb422.js";import{i as r}from"./vendor-r3f-Cy2v2uTY.js";import{m as i}from"./index-B2AIcwJW.js";import{G as a}from"./vendor-three-RqB-y9wz.js";var o=e(t(),1),s=n(),c=`
   varying vec3 vWorldPos;
   void main() {
     vec4 worldPos = modelMatrix * vec4(position, 1.0);
@@ -36,6 +36,6 @@ import{r as e}from"./rolldown-runtime-QTnfLwEv.js";import{i as t,t as n}from"./v
     vec3 col = mix(vec3(0.01, 0.04, 0.08), vec3(0.0, 0.3, 0.5), uEnergy / 100.0);
     col += vec3(0.3, 0.1, 0.0) * (uTemperature / 5000.0) * 0.2;
 
-    gl_FragColor = vec4(col, density * 0.18);
+    gl_FragColor = vec4(max(col, vec3(0.0)), clamp(density * 0.18, 0.0, 1.0));
   }
 `;function u(){let e=(0,o.useRef)(),t=(0,o.useMemo)(()=>({uTime:{value:0},uEnergy:{value:0},uTemperature:{value:300},uCorePulse:{value:1},uCorePos:{value:new a(0,0,0)},uWarpPulse:{value:0}}),[]);return r(t=>{if(!e.current)return;let{energy:n,visual:r,fx:a}=i.getState(),o=e.current.uniforms;o.uTime.value=t.clock.elapsedTime,o.uEnergy.value=n.energyLevel,o.uTemperature.value=n.temperature,o.uCorePulse.value=r.corePulse,o.uWarpPulse.value=a.warpPulse}),(0,s.jsxs)(`mesh`,{renderOrder:-1,children:[(0,s.jsx)(`boxGeometry`,{args:[120,60,120]}),(0,s.jsx)(`shaderMaterial`,{ref:e,vertexShader:c,fragmentShader:l,uniforms:t,transparent:!0,depthWrite:!1,side:1,blending:2})]})}var d=(0,o.memo)(u);export{d as default};

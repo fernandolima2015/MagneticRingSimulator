@@ -65,7 +65,8 @@ void main() {\r
   alpha = clamp(alpha, 0.02, 0.55);\r
   alpha *= (1.0 - smoothstep(40.0, 180.0, vDepth));\r
 \r
-  gl_FragColor = vec4(col, alpha);\r
+  // Cor negativa em mistura aditiva "apaga" a cena (manchas pretas no pós-processamento)\r
+  gl_FragColor = vec4(max(col, vec3(0.0)), clamp(alpha, 0.0, 1.0));\r
 }\r
 `,a=`// Campo estelar — pontos distorcidos pelo poço gravitacional
 
@@ -125,6 +126,7 @@ void main() {\r
   float alpha = (core + halo * 0.5) * (0.5 + uLensing * 0.2);\r
   alpha *= (1.0 - smoothstep(30.0, 250.0, vDepth));\r
 \r
-  gl_FragColor = vec4(col, alpha);\r
+  // Cor negativa em mistura aditiva "apaga" a cena (manchas pretas no pós-processamento)\r
+  gl_FragColor = vec4(max(col, vec3(0.0)), clamp(alpha, 0.0, 1.0));\r
 }\r
 `,s={vertexShader:e(r,n),fragmentShader:e(i,t)},c={vertexShader:e(a,n),fragmentShader:e(o,t)};export{c as n,s as t};

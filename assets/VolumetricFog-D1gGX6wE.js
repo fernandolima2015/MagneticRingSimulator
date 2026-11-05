@@ -1,11 +1,11 @@
-import{r as e}from"./rolldown-runtime-QTnfLwEv.js";import{F as t,M as n,d as r,j as i}from"./vendor-post-NFUJjCzR.js";import{S as a,o,s,x as c}from"./index-ipJfMC9t.js";var l=e(t(),1),u=n(),d=`
+import{r as e}from"./rolldown-runtime-QTnfLwEv.js";import{i as t,t as n}from"./vendor-react-BVnWb422.js";import{i as r}from"./vendor-r3f-Cy2v2uTY.js";import{m as i}from"./index-Bx0g5MTh.js";import{G as a}from"./vendor-three-RqB-y9wz.js";var o=e(t(),1),s=n(),c=`
   varying vec3 vWorldPos;
   void main() {
     vec4 worldPos = modelMatrix * vec4(position, 1.0);
     vWorldPos = worldPos.xyz;
     gl_Position = projectionMatrix * viewMatrix * worldPos;
   }
-`,f=`
+`,l=`
   uniform float uTime;
   uniform float uEnergy;
   uniform float uTemperature;
@@ -38,4 +38,4 @@ import{r as e}from"./rolldown-runtime-QTnfLwEv.js";import{F as t,M as n,d as r,j
 
     gl_FragColor = vec4(col, density * 0.18);
   }
-`;function p(){let e=(0,l.useRef)(),t=a(o),n=a(c),p=a(s),m=(0,l.useMemo)(()=>({uTime:{value:0},uEnergy:{value:0},uTemperature:{value:300},uCorePulse:{value:1},uCorePos:{value:new i(0,0,0)},uWarpPulse:{value:0}}),[]);return r(r=>{if(!e.current)return;let i=e.current.uniforms;i.uTime.value=r.clock.elapsedTime,i.uEnergy.value=t.energyLevel,i.uTemperature.value=t.temperature,i.uCorePulse.value=n.corePulse,i.uWarpPulse.value=p.warpPulse}),(0,u.jsxs)(`mesh`,{renderOrder:-1,children:[(0,u.jsx)(`boxGeometry`,{args:[120,60,120]}),(0,u.jsx)(`shaderMaterial`,{ref:e,vertexShader:d,fragmentShader:f,uniforms:m,transparent:!0,depthWrite:!1,side:1,blending:2})]})}var m=(0,l.memo)(p);export{m as default};
+`;function u(){let e=(0,o.useRef)(),t=(0,o.useMemo)(()=>({uTime:{value:0},uEnergy:{value:0},uTemperature:{value:300},uCorePulse:{value:1},uCorePos:{value:new a(0,0,0)},uWarpPulse:{value:0}}),[]);return r(t=>{if(!e.current)return;let{energy:n,visual:r,fx:a}=i.getState(),o=e.current.uniforms;o.uTime.value=t.clock.elapsedTime,o.uEnergy.value=n.energyLevel,o.uTemperature.value=n.temperature,o.uCorePulse.value=r.corePulse,o.uWarpPulse.value=a.warpPulse}),(0,s.jsxs)(`mesh`,{renderOrder:-1,children:[(0,s.jsx)(`boxGeometry`,{args:[120,60,120]}),(0,s.jsx)(`shaderMaterial`,{ref:e,vertexShader:c,fragmentShader:l,uniforms:t,transparent:!0,depthWrite:!1,side:1,blending:2})]})}var d=(0,o.memo)(u);export{d as default};

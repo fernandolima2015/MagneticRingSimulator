@@ -1,9 +1,7 @@
-# Evita cache do HTML (força buscar JS/CSS novos após deploy)
+# HTML sem cache: cada deploy passa a valer na hora (os assets têm hash no nome)
 <Files "index.html">
   <IfModule mod_headers.c>
     Header set Cache-Control "no-cache, no-store, must-revalidate"
-    Header set Pragma "no-cache"
-    Header set Expires "0"
   </IfModule>
 </Files>
 
@@ -11,6 +9,8 @@
   RewriteEngine On
   RewriteBase /reator/
   RewriteRule ^index\.html$ - [L]
+  # Arquivo de assets que não existe deve dar 404 de verdade, não o index.html
+  RewriteCond %{REQUEST_URI} !^/reator/assets/
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteCond %{REQUEST_FILENAME} !-d
   RewriteRule . /reator/index.html [L]

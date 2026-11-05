@@ -1,0 +1,1 @@
+import{m as e,n as t}from"./index-Bx0g5MTh.js";function n(){return t(e(e=>e.renderMode))}export{n as t};

@@ -53,19 +53,20 @@ O projeto foi pensado como plataforma experimental: cada subsistema (plasma, rel
 ### Inteligência artificial
 - **IA de controle** — análise de ameaças, protocolos adaptativos, consciência simulada com temas visuais
 - **IA Cientista autônoma** — ciclo hipótese → experimento → análise → relatório
-- **Integração LLM** (opcional, via API key no navegador):
-  - OpenAI (GPT-4o, GPT-4.1…)
-  - Anthropic (Claude Sonnet 4.6, Opus 4.6, Haiku 4.5)
-  - Google Gemini (2.5 Flash, API v1)
+- **Integração LLM** (opcional, com a API key do próprio usuário no navegador):
+  - OpenAI
+  - Anthropic (Claude Opus 5.5 — padrão —, Sonnet 5.5, Haiku 5.5, Opus 4.8, Sonnet 4.6, Haiku 4.5)
+  - Google Gemini (2.5, API v1beta)
   - Mistral AI
   - Groq
+  - Chave guardada por provedor; limite de 20 chamadas a cada 10 min no modo autônomo
 - Exportação automática de relatórios em `.md` / `.txt`
 
 ### Renderização e performance
-- Modos **Performance** e **Qualidade** (partículas, MSAA, bloom, DOF)
-- Post-processing: bloom, aberração cromática, glitch, ruptura da realidade, distorção hiperdimensional
+- **Performance**: DPR até 1, sem MSAA, bloom leve, aberração cromática; menos estrelas e partículas
+- **Qualidade**: mais partículas e estrelas; com GPU dedicada reconhecida, DPR até 1,5, MSAA 4x e os efeitos completos (vinheta, ruído, glitch e os 6 distorcedores: lente gravitacional, dilatação temporal, interferência quântica, distorção hiperdimensional, desacoplamento e ruptura da realidade). Em GPU integrada o modo Qualidade cai para o nível intermediário
 - Shaders GLSL modulares com sistema de `#include` (`buildShader.js`)
-- Code-splitting: engine, viewport 3D, painéis de IA/debug carregados sob demanda
+- Code-splitting: viewport 3D, pós-processamento, camadas opcionais e painéis de IA/debug carregados sob demanda; motor e bibliotecas base (three, React) em pedaços próprios
 
 ### Interface
 - HUD lateral colapsável (Controles / Telemetria & IA)
@@ -131,7 +132,7 @@ flowchart TB
 
 ```
 magnetic-ring-simulator/
-├── public/                 # Assets estáticos (.htaccess, favicon)
+├── public/                 # Assets estáticos (.htaccess da raiz e de assets/, favicon)
 ├── src/
 │   ├── ai/                 # AISystem, cientista, LLM, sub-agentes
 │   ├── components/         # HUD, Viewport3D, camadas 3D, painéis
@@ -191,18 +192,19 @@ Abre em [http://localhost:5173](http://localhost:5173).
 1. Execute `npm run release`.
 2. Envie **todo** o conteúdo de **`release/`** para a pasta `/reator/` no servidor.
 3. **Apague** arquivos antigos antes de substituir (hashes dos bundles mudam a cada build).
-4. Confirme que `mod_rewrite` está ativo no Apache (`.htaccess` incluído).
+4. Confirme que `mod_rewrite` e `mod_headers` estão ativos no Apache (os dois `.htaccess` vão junto: o da raiz e o de `assets/`, que dá cache longo e 404 real para arquivo inexistente).
 5. No navegador: **Ctrl+F5** após o deploy.
 
 ---
 
 ## Configuração de LLM (opcional)
 
-As chaves de API são armazenadas **apenas no `localStorage` do navegador** — nunca são enviadas ao repositório.
+As chaves de API ficam **só no navegador**, uma por provedor: por padrão no `sessionStorage` (somem ao fechar a aba); com **Lembrar neste navegador** marcado, no `localStorage`. Nunca vão para o repositório nem para outro provedor.
 
 1. Abra o painel **Telemetria & IA** (barra direita).
 2. Seção **IA Cientista** → configure provedor, modelo e API key.
-3. Ative os toggles desejados (hipóteses, relatórios, análise).
+3. Use **Testar conexão** (não grava nada) e depois **Salvar key**.
+4. Ative os toggles desejados (hipóteses, relatórios, análise).
 
 Provedores suportados: OpenAI, Anthropic, Google Gemini, Mistral, Groq.
 
@@ -218,7 +220,9 @@ Provedores suportados: OpenAI, Anthropic, Google Gemini, Mistral, Groq.
 6. **Renderização** — alterne Performance ↔ Qualidade conforme seu hardware.
 7. **IA** — ative monitoramento autônomo ou o cientista com LLM.
 
-Use **Resetar Reator** para voltar ao preset Estável e limpar estados críticos.
+Use **Resetar Reator** para voltar ao preset Estável e limpar estados críticos (camadas 3D e modo de renderização são mantidos).
+
+Com **Controle Autônomo** ou um experimento do cientista em curso, os sliders ficam travados: quem dirige o reator é a IA.
 
 ---
 

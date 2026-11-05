@@ -147,17 +147,18 @@ vec3 spacetimeWell(vec3 pos, float lensing, float distortion, float time) {
 
   return warped;
 }
-`,i=`// Grade espacial — apenas fragment shader (usa fwidth)
-
-float spacetimeGrid(vec3 pos, float scale, float time, float distortion) {
-  vec3 p = pos * scale;
-  float gx = abs(fract(p.x - 0.5) - 0.5) / fwidth(p.x);
-  float gy = abs(fract(p.y - 0.5) - 0.5) / fwidth(p.y);
-  float gz = abs(fract(p.z - 0.5) - 0.5) / fwidth(p.z);
-  float grid = 1.0 - min(min(gx, gy), gz);
-  float wave = sin(length(pos.xz) * 0.4 - time * 1.2) * 0.5 + 0.5;
-  return grid * (0.4 + wave * 0.3 + distortion * 0.4);
-}
+`,i=`// Grade espacial — apenas fragment shader (usa fwidth)\r
+\r
+float spacetimeGrid(vec3 pos, float scale, float time, float distortion) {\r
+  vec3 p = pos * scale;\r
+  vec3 w = max(fwidth(p), vec3(1e-4));\r
+  float gx = abs(fract(p.x - 0.5) - 0.5) / w.x;\r
+  float gy = abs(fract(p.y - 0.5) - 0.5) / w.y;\r
+  float gz = abs(fract(p.z - 0.5) - 0.5) / w.z;\r
+  float grid = clamp(1.0 - min(min(gx, gy), gz), 0.0, 1.0);\r
+  float wave = sin(length(pos.xz) * 0.4 - time * 1.2) * 0.5 + 0.5;\r
+  return grid * (0.4 + wave * 0.3 + distortion * 0.4);\r
+}\r
 `,a={utilities:e,noise:t,fbm:n,spacetimeVert:r,spacetimeFrag:i},o={"shared/utilities.glsl":e,"shared/noise.glsl":t,"shared/fbm.glsl":n,"shared/spacetime.glsl":`${r}\n${i}`,"shared/spacetime.vert.glsl":r,"shared/spacetime.frag.glsl":i};function s(e){return e.replace(/#include\s+"([^"]+)"/g,(e,t)=>o[t]||(console.warn(`[buildShader] Include não encontrado: ${t}`),``))}function c(e,t=[`utilities`,`noise`,`fbm`]){return t.map(e=>a[e]??``).filter(Boolean).join(`
 `)+`
 `+s(e)}var l=[`utilities`,`noise`,`fbm`],u=[`utilities`,`noise`,`fbm`,`spacetimeVert`],d=[`utilities`,`noise`,`fbm`,`spacetimeFrag`],f=[`utilities`,`noise`,`fbm`,`spacetimeVert`,`spacetimeFrag`];export{c as a,l as i,f as n,u as r,d as t};
